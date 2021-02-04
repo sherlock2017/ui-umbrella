@@ -32,6 +32,7 @@ function SignupScreen(props) {
           icon="form-textbox-password"
           placeholder="**********"
           secureTextEntry
+          password={true}
         />
         {/* <AppButton text="Register" color="dodgerblue" /> */}
         <AppGradientButton

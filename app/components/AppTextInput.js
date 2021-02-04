@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, TextInput, Text, View } from "react-native";
 import BrandColors from "../configs/BrandColors";
 import DefaultStyles from "../configs/Styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import AppPasswordEye from "./AppPasswordEye";
 
-function AppTextInput({ label, placeholder, icon, ...otherProps }) {
+function AppTextInput({
+  label,
+  placeholder,
+  icon,
+  fieldType,
+  password = false,
+  ...otherProps
+}) {
+  const [activateEye, setActivateEye] = useState(false);
+
+  const togglePassword = () => {
+    setActivateEye(!activateEye);
+  };
+
   return (
     <View style={styles.input}>
       {!icon && <Text style={styles.label}>{label}</Text>}
@@ -14,10 +28,26 @@ function AppTextInput({ label, placeholder, icon, ...otherProps }) {
         {icon && (
           <MaterialCommunityIcons style={styles.icon} name={icon} size={30} />
         )}
-        <TextInput
-          style={[styles.text, DefaultStyles.h6, { fontWeight: "bold" }]}
-          {...otherProps}
-          placeholder={placeholder}
+        {password && (
+          <TextInput
+            style={[styles.text, DefaultStyles.h6, { fontWeight: "bold" }]}
+            {...otherProps}
+            placeholder={placeholder}
+            secureTextEntry={!activateEye}
+          />
+        )}
+        {!password && (
+          <TextInput
+            style={[styles.text, DefaultStyles.h6, { fontWeight: "bold" }]}
+            {...otherProps}
+            placeholder={placeholder}
+          />
+        )}
+        <AppPasswordEye
+          onPress={togglePassword}
+          password={password}
+          active={activateEye}
+          style={styles.eye}
         />
       </View>
     </View>
@@ -49,7 +79,7 @@ const styles = StyleSheet.create({
   text: {
     paddingVertical: 1,
     textDecorationLine: "none",
-    width: "90%",
+    width: "80%",
   },
   textContainer: {
     flexDirection: "row",
@@ -57,5 +87,8 @@ const styles = StyleSheet.create({
   icon: {
     color: "grey",
     marginRight: 5,
+  },
+  eye: {
+    bottom: 5,
   },
 });
