@@ -10,27 +10,38 @@ function AppGradientButton({
   onPress,
   width = "100%",
   icon = "arrow-right",
+  position,
   ...otherProps
 }) {
+  const getPosition = (position) => {
+    if (position == "right")
+      return { flexDirection: "row", justifyContent: "flex-end" };
+    if (position == "left")
+      return { flexDirection: "row", justifyContent: "flex-start" };
+  };
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={{ width: width }}
-      {...otherProps}
-    >
-      <LinearGradient
-        // Button Linear Gradient
-        colors={colors}
-        style={[styles.container]}
-      >
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>{text}</Text>
-          {icon && (
-            <MaterialCommunityIcons style={styles.icon} name={icon} size={25} />
-          )}
-        </View>
-      </LinearGradient>
-    </TouchableOpacity>
+    <View style={getPosition(position)}>
+      <View style={{ width: width }}>
+        <TouchableOpacity onPress={onPress} {...otherProps}>
+          <LinearGradient
+            // Button Linear Gradient
+            colors={colors}
+            style={[styles.container]}
+          >
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>{text}</Text>
+              {icon && (
+                <MaterialCommunityIcons
+                  style={styles.icon}
+                  name={icon}
+                  size={25}
+                />
+              )}
+            </View>
+          </LinearGradient>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
@@ -44,6 +55,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     padding: 15,
     marginVertical: 10,
+    width: "100%",
   },
   text: {
     fontSize: 20,

@@ -2,10 +2,11 @@ import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import BrandColors from "../configs/BrandColors";
 
-function AppPasswordEye({ password, onPress, active = false, ...otherProps }) {
+function AppPasswordEye({ onPress, active = false, ...otherProps }) {
+  console.log("password");
   return (
     <>
-      {password && active && (
+      {active && (
         <MaterialCommunityIcons
           color={BrandColors.dark}
           name="eye"
@@ -14,7 +15,7 @@ function AppPasswordEye({ password, onPress, active = false, ...otherProps }) {
           onPress={onPress}
         />
       )}
-      {password && !active && (
+      {!active && (
         <MaterialCommunityIcons
           color={BrandColors.medium}
           name="eye-off"

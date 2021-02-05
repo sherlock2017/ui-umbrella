@@ -31,7 +31,7 @@ function FeedbackScreen(props) {
           numberOfLines={10}
         />
         <AppGradientButton
-          style={{ flexDirection: "row", justifyContent: "flex-start" }}
+          position="left"
           text="Submit "
           width="50%"
           colors={DefaultStyles.gradient.blue}

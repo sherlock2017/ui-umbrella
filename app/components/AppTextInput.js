@@ -9,8 +9,7 @@ function AppTextInput({
   label,
   placeholder,
   icon,
-  fieldType,
-  password = false,
+  type,
   multiline = false,
   numberOfLines,
   ...otherProps
@@ -32,27 +31,27 @@ function AppTextInput({
         {icon && (
           <MaterialCommunityIcons style={styles.icon} name={icon} size={30} />
         )}
-        {password && (
+        {type === "password" ? (
+          <>
+            <TextInput
+              style={[styles.text, DefaultStyles.h6, { fontWeight: "bold" }]}
+              {...otherProps}
+              placeholder={placeholder}
+              secureTextEntry={!activateEye}
+            />
+            <AppPasswordEye
+              onPress={togglePassword}
+              active={activateEye}
+              style={styles.eye}
+            />
+          </>
+        ) : (
           <TextInput
             style={[styles.text, DefaultStyles.h6, { fontWeight: "bold" }]}
             {...otherProps}
             placeholder={placeholder}
-            secureTextEntry={!activateEye}
           />
         )}
-        {!password && (
-          <TextInput
-            style={[styles.text, DefaultStyles.h6, { fontWeight: "bold" }]}
-            {...otherProps}
-            placeholder={placeholder}
-          />
-        )}
-        <AppPasswordEye
-          onPress={togglePassword}
-          password={password}
-          active={activateEye}
-          style={styles.eye}
-        />
       </View>
     </View>
   );

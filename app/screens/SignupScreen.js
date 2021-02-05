@@ -32,11 +32,11 @@ function SignupScreen(props) {
           icon="form-textbox-password"
           placeholder="**********"
           secureTextEntry
-          password={true}
+          type="password"
         />
         {/* <AppButton text="Register" color="dodgerblue" /> */}
         <AppGradientButton
-          style={{ flexDirection: "row", justifyContent: "flex-end" }}
+          position="right"
           text="Register "
           width="50%"
           onPress={() => alert("User Registered")}
