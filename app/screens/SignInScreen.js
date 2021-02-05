@@ -23,7 +23,7 @@ function SigninScreen(props) {
         <AppTextInput
           label="Email"
           icon="email"
-          placeholder="ironman@gmail.com"
+          placeholder="example@gmail.com"
         />
         <AppTextInput
           label="Password"

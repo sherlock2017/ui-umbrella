@@ -7,6 +7,7 @@ import Screen from "../components/Screen";
 import DefaultStyles from "../configs/Styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import BrandColors from "../configs/BrandColors";
+import AppDateTimeInput from "../components/AppDateTimeInput";
 
 function SignupScreen(props) {
   return (
@@ -21,11 +22,11 @@ function SignupScreen(props) {
         <Text style={[DefaultStyles.h5]}>Register with us to get benefits</Text>
       </View>
       <View style={styles.form}>
-        <AppTextInput label="Name" icon="account" placeholder="Rishabh Jain" />
+        <AppTextInput label="Name" icon="account" placeholder="Will Robinson" />
         <AppTextInput
           label="Email"
           icon="email"
-          placeholder="ironman@gmail.com"
+          placeholder="example@gmail.com"
         />
         <AppTextInput
           label="Password"
@@ -33,6 +34,13 @@ function SignupScreen(props) {
           placeholder="**********"
           secureTextEntry
           type="password"
+        />
+        {/* <AppDateTimePicker /> */}
+        <AppDateTimeInput
+          label="Date of Evidence"
+          mode="time"
+          placeholder="DD/MM/YYYY"
+          onSelect={(dateTime) => alert(dateTime)}
         />
         {/* <AppButton text="Register" color="dodgerblue" /> */}
         <AppGradientButton
@@ -84,9 +92,10 @@ const styles = StyleSheet.create({
   },
   footer: {
     alignItems: "center",
+    justifyContent: "center",
     flexDirection: "row",
     top: "22%",
-    left: "25%",
+    // left: "25%",
   },
   signIn: {
     fontWeight: "bold",
