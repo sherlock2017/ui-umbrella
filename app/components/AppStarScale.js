@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, Text } from "react-native";
+import { FlatList, Text, View, StyleSheet } from "react-native";
 import AppStar from "./AppStar";
 import DefaultStyles from "../configs/Styles";
 import { setStatusBarStyle } from "expo-status-bar";
 
-let starsArray = [];
-function AppRatingsScale({ totalPoints = 2, ratings, size }) {
+function AppRatingsScale({ totalPoints = 2, ratings, size, ...otherProps }) {
   const [point, setPoint] = useState(0);
   const [rating, setRating] = useState([]);
   const [originalRatings, setOriginalRatings] = useState([]);
+  const [elementArray, setElementArray] = useState([]);
   useEffect(() => {
-    for (let x = 1; x <= totalPoints; x++) starsArray.push({ id: x, point: 0 });
+    let starsArray = [];
+    for (let x = 1; x <= totalPoints; x++)
+      starsArray.push({
+        id: Math.floor(Math.random() * 100 + 1),
+        point: 0,
+      });
+    console.log(starsArray);
     setRating(starsArray);
     setOriginalRatings(starsArray);
   }, []);
@@ -63,19 +69,23 @@ function AppRatingsScale({ totalPoints = 2, ratings, size }) {
   };
 
   return (
-    <FlatList
-      horizontal={true}
-      data={rating}
-      keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }) => (
-        <AppStar
-          point={item.point}
-          size={size}
-          onPress={() => handleClick(item)}
-        />
-      )}
-    />
+    <View style={[{ height: size }]} {...otherProps}>
+      <FlatList
+        horizontal={true}
+        data={rating}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <AppStar
+            point={item.point}
+            size={size}
+            onPress={() => handleClick(item)}
+          />
+        )}
+      />
+    </View>
   );
 }
 
 export default AppRatingsScale;
+
+const styles = StyleSheet.create({});

@@ -9,7 +9,7 @@ function FeedbackScreen(props) {
   return (
     <Screen style={styles.container}>
       <AppRatingsScale
-        totalPoints={8}
+        totalPoints={5}
         size={40}
         ratings={(rate) => console.log("rating -- ", rate)}
       />

@@ -39,7 +39,11 @@ function AppStar({ onPress, point = 0, size }) {
 export default AppStar;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   emptyStar: {
     color: "black",
   },
