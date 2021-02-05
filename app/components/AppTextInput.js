@@ -5,24 +5,24 @@ import DefaultStyles from "../configs/Styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AppPasswordEye from "./AppPasswordEye";
 
-function AppTextInput({
-  label,
-  placeholder,
-  icon,
-  type,
-  multiline = false,
-  numberOfLines,
-  ...otherProps
-}) {
+function AppTextInput({ label, placeholder, icon, type, ...otherProps }) {
   const [activateEye, setActivateEye] = useState(false);
 
   const togglePassword = () => {
     setActivateEye(!activateEye);
   };
 
+  const getWidth = () => {
+    if (!icon) return "98%";
+    else return "80%";
+  };
+
   return (
     <View
-      style={[styles.input, { height: multiline ? numberOfLines * 15 : 60 }]}
+      style={[
+        styles.input,
+        { height: otherProps.multiline ? otherProps.numberOfLines * 15 : 60 },
+      ]}
     >
       {!icon && <Text style={styles.label}>{label}</Text>}
       {icon && <Text style={styles.labelWithIcon}>{label}</Text>}
@@ -34,7 +34,11 @@ function AppTextInput({
         {type === "password" ? (
           <>
             <TextInput
-              style={[styles.text, DefaultStyles.h6, { fontWeight: "bold" }]}
+              style={[
+                styles.text,
+                DefaultStyles.h6,
+                { fontWeight: "bold", width: getWidth() },
+              ]}
               {...otherProps}
               placeholder={placeholder}
               secureTextEntry={!activateEye}
@@ -47,7 +51,11 @@ function AppTextInput({
           </>
         ) : (
           <TextInput
-            style={[styles.text, DefaultStyles.h6, { fontWeight: "bold" }]}
+            style={[
+              styles.text,
+              DefaultStyles.h6,
+              { fontWeight: "bold", width: getWidth() },
+            ]}
             {...otherProps}
             placeholder={placeholder}
           />
@@ -81,7 +89,7 @@ const styles = StyleSheet.create({
   text: {
     paddingVertical: 1,
     textDecorationLine: "none",
-    width: "80%",
+    textAlignVertical: "top",
   },
   textContainer: {
     flexDirection: "row",
