@@ -11,6 +11,8 @@ function AppTextInput({
   icon,
   fieldType,
   password = false,
+  multiline = false,
+  numberOfLines,
   ...otherProps
 }) {
   const [activateEye, setActivateEye] = useState(false);
@@ -20,7 +22,9 @@ function AppTextInput({
   };
 
   return (
-    <View style={styles.input}>
+    <View
+      style={[styles.input, { height: multiline ? numberOfLines * 15 : 60 }]}
+    >
       {!icon && <Text style={styles.label}>{label}</Text>}
       {icon && <Text style={styles.labelWithIcon}>{label}</Text>}
       {/* icon */}
@@ -68,7 +72,6 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: BrandColors.white,
-    height: 60,
     borderRadius: 7,
     elevation: 3,
     marginVertical: 10,

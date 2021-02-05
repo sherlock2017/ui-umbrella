@@ -13,7 +13,7 @@ function AppRatingsScale({ totalPoints = 2, ratings, size, ...otherProps }) {
     let starsArray = [];
     for (let x = 1; x <= totalPoints; x++)
       starsArray.push({
-        id: Math.floor(Math.random() * 100 + 1),
+        id: Math.floor(Math.random() * 321 + Math.random() * 423),
         point: 0,
       });
     console.log(starsArray);

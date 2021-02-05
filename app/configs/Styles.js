@@ -38,4 +38,8 @@ export default {
     fontFamily: Platform.OS === "android" ? "sans-serif" : "Avenir",
     color: BrandColors.black,
   },
+  gradient: {
+    blue: ["#09C6F9", "#045DE9"],
+    lime: ["#55D284", "#F2CF07"],
+  },
 };
